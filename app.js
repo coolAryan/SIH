@@ -21,6 +21,10 @@ try {
   console.log(error);
 }
 
+app.get('/dashboard', (req,res) => {
+  res.sendFile(path.join(__dirname + "/public/Grid.html"))
+})
+
 app.post("/login", async (req, res) => {
   console.log(req.body);
   try {

@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- <style>
+      body{
+           background-color: white;
+          }
+      .w3-card{
+               background-color: gainsboro;
+              }
+      .w3-card:hover{ position: relative; 
+             top: -5px;}
+    </style> -->
+
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      .func{
+              /*margin: 22px 2px 2px 2px;*/
+              display: flex;
+              justify-content: center; /*for vertical position*/
+              align-items: center; /*for horizontal center position*/
+              width: 150px;
+              height: 26px;
+              background-color: lightblue;
+              /*border-radius: 10px;*/
+              border-radius: 5px;
+              border: 2px black solid;
+              font-family: Garamond;
+              color: black;
+              cursor: pointer;
+              text-align: center;
+             }
+      .func:hover{
+                  background-color:deepskyblue;
+                 }
+
+      .title{
+             background-color: whitesmoke;
+             border: 2px black solid;
+             border-width: thin;
+             border-radius: 7px;
+             padding: 20px 0 0 0;
+            }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <div class="w3-container w3-theme w3-padding" id="myHeader">
+      <div class="w3-center">
+        
+        <div class="w3-padding-32">
+          <h1 class="w3-xxxlarge w3-animate-bottom">Upload a criminal image</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-row-padding w3-center w3-margin-top">
+      <div class="container">
+        <div class="title">
+          <figure class="image-container" placeholder="Uploaded image">
+              <img id="chosen-image">
+              <figcaption id="file-name" placeholder="image"></figcaption>
+          </figure>
+        </div>
+
+
+        <!-- <input type="file" id="upload-button" accept="image/*"> -->
+        <!-- <div class="upload" onclick="openPopup()">
+            <i class="fas fa-upload"></i> &nbsp; Upload a criminal image
+        </div> -->
+        <div class="popup" id="popup" align="center">
+            <table border=0>
+                <tr>
+                    <td style="padding:5px">
+                        <input type="file" id="upload-button" accept="image/*">
+                        <label class="func" for="upload-button">
+                            <b>
+                                Choose image
+                            </b>
+                        </label>
+                    </td>
+                
+                    <td style="padding:5px">
+                        <!-- <a href="https://drive.google.com/drive/my-drive" style="text-decoration:none"> -->
+                            <label class="func">
+                                <b>
+                                    <i class="fas fa-upload"></i> &nbsp; Upload
+                                </b>
+                            </label>
+                        <!-- </a> -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- <input type="file" id="upload-button" accept="image/*">
+        <label for="upload-button">
+            <i class="fas fa-upload"></i> &nbsp; upload an criminal image
+        </label> -->
+      </div>
+      <!--Script-->
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Suscribe</title>
+          <link rel="stylesheet" href="sub.css">  
+    </head>
+    <body>
+<div class="wrapper">
+	<div class="container">
+		<h2>Enter PhoneNumber To Subscribe</h2>
+		<form class="form">
+			<input type="tel" name="telphone" placeholder="Phone Number" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10"  title="Ten digits code" required/>
+			<button type="number" id="otp-button">Generate OTP</button>
+            <br><br>
+            <input type="tel" name="OTP" placeholder="OTP" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="8"  title="Five-Eight digits code" required/>
+            <button type="submit" id="verify-button">Verify</button><br>
+
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+</body>
+</html>

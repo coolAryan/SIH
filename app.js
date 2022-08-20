@@ -21,24 +21,33 @@ try {
   console.log(error);
 }
 
-app.get('/dashboard', (req,res) => {
-  res.sendFile(path.join(__dirname + "/public/Grid.html"))
-})
+app.get("/dashboard", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/Grid.html"));
+});
+app.get("/dashboard/subScription", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/Subscription/Choice.html"));
+});
+app.get("/dashboard", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/Grid.html"));
+});
 
 app.post("/login", async (req, res) => {
-  console.log(req.body);
   try {
-    const { email, password } = req.body;
-    if (email && password) {
-      const userLogin = await User.findOne({ email: email });
+    var { username, password } = req.body;
+    console.log(req.body, 1);
+    if (username && password) {
+      var userLogin = await User.findOne({
+        username: username,
+      });
       if (userLogin) {
         if (password !== userLogin.password) {
           console.log({ message: "Password Mismatch" });
           res.redirect("/");
+        } else {
+          console.log({ message: "User signup Success" });
+          // redirected to the grid page
+          res.redirect("/dashboard");
         }
-        console.log({ message: "User signup Success" });
-        // redirected to the grid page
-        res.redirect("/dashboard");
       } else {
         console.log("Login Details Not Exists");
         res.redirect("/");
@@ -49,8 +58,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get(
-  "/",
-  (req, res) => res.sendFile(path.join(__dirname + "/public/loginPage.html"))
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname + "/public/loginPage.html"))
 );
 app.listen(port, () => console.log(`App listening on port ${port}!`));

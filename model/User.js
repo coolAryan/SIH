@@ -8,6 +8,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  token: {
+    type: String,
+    required: false,
+  },
+  isAuthenticated: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const User = mongoose.model("user", UserSchema);

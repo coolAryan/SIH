@@ -32,21 +32,22 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  console.log(req.body);
   try {
-    const { email, password } = req.body;
+    var { username, password } = req.body;
     console.log(req.body, 1);
-    if (email && password) {
-      const userLogin = await User.findOne({ email: email });
-      console.log(userLogin);
+    if (username && password) {
+      var userLogin = await User.findOne({
+        username: username,
+      });
       if (userLogin) {
         if (password !== userLogin.password) {
           console.log({ message: "Password Mismatch" });
           res.redirect("/");
+        } else {
+          console.log({ message: "User signup Success" });
+          // redirected to the grid page
+          res.redirect("/dashboard");
         }
-        console.log({ message: "User signup Success" });
-        // redirected to the grid page
-        res.redirect("/dashboard");
       } else {
         console.log("Login Details Not Exists");
         res.redirect("/");

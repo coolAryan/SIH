@@ -2,6 +2,7 @@ const express = require("express");
 var path = require("path");
 var mongoose = require("mongoose");
 var User = require("./model/User");
+var uploadFnc = require("./upload");
 const app = express();
 const port = 3000;
 
@@ -21,12 +22,6 @@ try {
   console.log(error);
 }
 
-app.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/Grid.html"));
-});
-app.get("/dashboard/subScription", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/Subscription/Choice.html"));
-});
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });

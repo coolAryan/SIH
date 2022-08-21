@@ -3,6 +3,7 @@ var path = require("path");
 var mongoose = require("mongoose");
 var User = require("./model/User");
 var uploadFnc = require("./upload");
+const upload = require("./upload");
 const app = express();
 const port = 3000;
 
@@ -24,6 +25,12 @@ try {
 
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
+});
+
+app.post("/upload", (req, res) => {
+  console.log(req.body);
+  upload(req.body.filename, req.body.files);
+  console.log("Upload function Working");
 });
 
 app.post("/login", async (req, res) => {

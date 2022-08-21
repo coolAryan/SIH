@@ -67,7 +67,7 @@
             font-family: Garamond;
           }     
     </style>
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
 
   <body>
@@ -107,13 +107,14 @@
                       </td>
                   
                       <td style="padding:5px">
-                          <!-- <a href="https://drive.google.com/drive/my-drive" style="text-decoration:none"> -->
-                              <label class="func" id="abc" onclick="checkMe()"/>
+                          <a style="text-decoration:none">
+                              <label class="func" id="abc" />
                                   <b>
-                                      <i class="fas fa-upload"></i> &nbsp; Upload
+                                      <i class="fas fa-upload"></i> &nbsp; 
+                                      <input id="submitbutton" type="submit" value="Upload">
                                   </b>
                               </label>
-                          <!-- </a> -->
+                          </a>
                       </td>
                   </tr>
               </table>
@@ -127,9 +128,37 @@
           </label> -->
         </div>
       </div>
-      <!--Script-->
-      <script src="script.js"></script>
-      <!-- </div> -->
+<script type="text/javascript">
+  let uploadButton = document.getElementById("upload-button");
+  let chosenImage = document.getElementById("chosen-image");
+  let fileName = document.getElementById("file-name");
+  let reader = new FileReader();
+
+   function runJsScript(filename, files){
+        var jqXHR = $.ajax({
+            type: "POST",
+            url: "/upload",
+            async: true,
+            data: { filename: filename, files: files }
+        });
+
+        console.log(jqXHR.responseText);
+        return jqXHR.responseText;
+    }
+
+    $('#submitbutton').click(function(){
+        reader.readAsDataURL(uploadButton.files[0]);
+        console.log(reader, "1");
+        reader.onload = () => {
+          chosenImage.setAttribute("src", reader.result);
+        };
+        fileName.textContent = uploadButton.files[0].name;
+         
+        console.log(uploadButton.files[0]);
+        result = runJsScript(fileName.textContent, uploadButton.files[0]);
+        console.log('Got back ' + result);
+    });
+</script>
     </div>
   </body>
 </html>

@@ -3,16 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Suscribe</title>
-          <link rel="stylesheet" href="sub.css">  
+		<title>Suscribe</title>
+		<link rel="stylesheet" href="sub.css">  
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
 <div class="wrapper">
 	<div class="container">
 		<h2>Enter Email To Subscribe</h2>
 		<form class="form">
-			<input type="text" placeholder="Email" name="email">
-			<button type="submit" id="login-button" onclick="emailSubsc">Subscribe</button><br>
+			<input type="text" placeholder="Email" name="email" id="email">
+			<button type="submit" id="login-button">Subscribe</button><br>
 		</form>
 	</div>
 	
@@ -30,4 +31,26 @@
 	</ul>
 </div>
 </body>
+<script type="text/javascript">
+
+   let email = document.getElementById("email");
+
+   function runJsScript(email){
+        var jqXHR = $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:5000/subscribe",
+            async: false,
+            data: { email: email }
+        });
+
+        console.log(jqXHR.responseText);
+        return jqXHR.responseText;
+    }
+
+    $('#login-button').click(function(){ 
+		console.log(email.textContent);
+        result = runJsScript(email.textContent);
+        console.log('Got back ' + result);
+    });
+</script>
 </html>

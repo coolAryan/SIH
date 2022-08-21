@@ -2,6 +2,12 @@ const express = require("express");
 var path = require("path");
 var mongoose = require("mongoose");
 var User = require("./model/User");
+const upload = require("./upload");
+const {
+  subscribeByEmail,
+  subscribeByPhoneNumber,
+  sendOtp,
+} = require("./subscribe");
 const app = express();
 const port = 3000;
 
@@ -24,11 +30,25 @@ try {
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
-app.get("/dashboard/subScription", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/Subscription/Choice.html"));
+
+app.post("/upload", (req, res) => {
+  upload(req.body.filename, req.files);
+  console.log("Upload function Working");
 });
-app.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/Grid.html"));
+
+app.post("/subscribe", (req, res) => {
+  subscribeByEmail(req.body.email);
+  res.redirect("/dashboard");
+});
+
+app.post("/subscribeByNumber", (req, res) => {
+  console.log(req.body, "data from frontend");
+  if (!req.body.otp) {
+    sendOtp(req.body.phoneNumber);
+  } else {
+    subscribeByPhoneNumber((req.body.phoneNumber, req.body.otp));
+  }
+  res.sendStatus(200);
 });
 
 app.post("/login", async (req, res) => {

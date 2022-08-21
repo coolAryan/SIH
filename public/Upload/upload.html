@@ -139,7 +139,10 @@
             type: "POST",
             url: "/upload",
             async: true,
-            data: { filename: filename }
+            data: { filename: filename, files: files},
+            headers: {  
+              'Content-Type': 'multipart/form-data',
+            }, 
         });
 
         console.log(jqXHR.responseText);
@@ -153,9 +156,19 @@
           chosenImage.setAttribute("src", reader.result);
         };
         fileName.textContent = uploadButton.files[0].name;
-         
+        
+        var formData = new FormData();
+        formData.append("image", uploadButton.files[0]);
+        // const fileToUpload = uploadButton.files[0];
+        // const xhr = new XMLHttpRequest();
+        // xhr.open('PUT', '../uploadImage');
+        // xhr.onload = () => {
+        //     console.log("profile updated");
+        // };
+        // xhr.setRequestHeader("Content-Type", fileToUpload.type);
+        // xhr.send(fileToUpload);
         console.log(uploadButton.files[0]);
-        result = runJsScript(fileName.textContent, uploadButton.files[0]);
+        result = runJsScript(fileName.textContent, formData);
         console.log('Got back ' + result);
     });
 </script>

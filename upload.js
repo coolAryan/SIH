@@ -7,8 +7,8 @@ function upload(fileName, files) {
   // let chosenImage = document.getElementById("chosen-image");
   // let fileName = document.getElementById("file-name");
 
-  console.log("fileName Uplaod func", fileName);
-  // console.log("fileName Uplaod func", files);
+  console.log("fileName Upload func", fileName);
+  console.log("fileName Uplaod func", files);
 
   // Set the region
   AWS.config.update({ region: "ap-south-1" });

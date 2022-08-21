@@ -8,28 +8,28 @@ function upload(fileName, files) {
   // let fileName = document.getElementById("file-name");
 
   console.log("fileName Uplaod func", fileName);
-  console.log("fileName Uplaod func", files);
+  // console.log("fileName Uplaod func", files);
+
   // Set the region
   AWS.config.update({ region: "ap-south-1" });
 
   // Create S3 service object
   var s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+  // Configure the file stream and obtain the upload parameters
+  var fileStream = fs.createReadStream(fileName);
+  fileStream.on("error", function (err) {
+    console.log("File Error", err);
+  });
 
   // call S3 to retrieve upload file to specified bucket
   var uploadParams = {
     Bucket: "sih-project-vss",
     Key: path.basename(fileName),
-    Body: files,
+    Body: fileStream,
   };
-  var file = process.argv[3];
 
-  // Configure the file stream and obtain the upload parameters
-  var fileStream = fs.createReadStream(file);
-  fileStream.on("error", function (err) {
-    console.log("File Error", err);
-  });
-  uploadParams.Body = fileStream;
-  uploadParams.Key = path.basename(file);
+  // uploadParams.Body = fileStream;
+  // uploadParams.Key = path.basename(file);
   // call S3 to retrieve upload file to specified bucket
   s3.upload(uploadParams, function (err, data) {
     if (err) {

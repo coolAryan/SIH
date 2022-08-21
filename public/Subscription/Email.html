@@ -11,7 +11,7 @@
 <div class="wrapper">
 	<div class="container">
 		<h2>Enter Email To Subscribe</h2>
-		<form class="form">
+		<form class="form" action="/subscribe" method="post">
 			<input type="text" placeholder="Email" name="email" id="email">
 			<button type="submit" id="login-button">Subscribe</button><br>
 		</form>
@@ -31,14 +31,14 @@
 	</ul>
 </div>
 </body>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
    let email = document.getElementById("email");
 
    function runJsScript(email){
         var jqXHR = $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:5000/subscribe",
+            url: "/subscribe",
             async: false,
             data: { email: email }
         });
@@ -51,6 +51,6 @@
 		console.log(email.textContent);
         result = runJsScript(email.textContent);
         console.log('Got back ' + result);
-    });
-</script>
+    }); -->
+<!-- </script> -->
 </html>

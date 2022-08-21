@@ -27,7 +27,6 @@ def subscribe():
         )
         return response
 
-
-if __name__ == 'main':
-    app.run(debug = True, port="5000")
+if __name__ == '__main__':
+    app.run(port=80)
 

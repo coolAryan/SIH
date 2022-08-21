@@ -2,8 +2,8 @@ const express = require("express");
 var path = require("path");
 var mongoose = require("mongoose");
 var User = require("./model/User");
-var uploadFnc = require("./upload");
 const upload = require("./upload");
+const subscribe = require("./subscribe");
 const app = express();
 const port = 3000;
 
@@ -29,8 +29,15 @@ app.get("/dashboard", (req, res) => {
 
 app.post("/upload", (req, res) => {
   console.log(req.body);
-  upload(req.body.filename, req.body.files);
+  upload(req.body.filename);
   console.log("Upload function Working");
+});
+
+app.post("/subscribe", (req, res) => {
+  console.log(req.body);
+  subscribe(req.body.email);
+  console.log("Subscribe function Working");
+  res.redirect("/dashboard");
 });
 
 app.post("/login", async (req, res) => {

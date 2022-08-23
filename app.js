@@ -1,8 +1,9 @@
 const express = require("express");
 var path = require("path");
-var mongoose = require("mongoose");
 var User = require("./model/User");
+var connect = require("./config/db.config");
 const upload = require("./upload");
+var multer = require("multer");
 const {
   subscribeByEmail,
   subscribeByPhoneNumber,
@@ -15,24 +16,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-try {
-  mongoose.connect(
-    "mongodb+srv://khushboo123:SIH123@phantom.agz12to.mongodb.net/authentication"
-  );
-
-  var db = mongoose.connection;
-  db.on("connected", console.error.bind(console, "MongoDB connection done"));
-  db.on("error", console.error.bind(console, "MongoDB connection error:"));
-} catch (error) {
-  console.log(error);
-}
-
+connect();
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
 
 app.post("/upload", (req, res) => {
-  upload(req.body.filename, req.files);
+  upload(req.body.filename);
   console.log("Upload function Working");
 });
 
@@ -46,7 +36,7 @@ app.post("/subscribeByNumber", (req, res) => {
   if (!req.body.otp) {
     sendOtp(req.body.phoneNumber);
   } else {
-    subscribeByPhoneNumber((req.body.phoneNumber, req.body.otp));
+    subscribeByPhoneNumber(req.body.phoneNumber, req.body.otp);
   }
   res.sendStatus(200);
 });

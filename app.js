@@ -34,10 +34,6 @@ app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
 
-app.get("/checkUpload", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/sample.html"));
-});
-
 app.post("/upload", upload.single("uploaded_file"), (req, res) => {
   console.log(req.file);
   uploadFunc();

@@ -38,11 +38,9 @@ function sendOtp(phoneNumber) {
   sns.createSMSSandboxPhoneNumber(params, function (err, data) {
     if (err) console.log(err, err.stack); // an error occurred
     else {
-      console.log(data);
       console.log("Otp Send");
     } // successful response
   });
-  //   return "Otp Send";
 }
 
 function subscribeByPhoneNumber(phoneNumber, otp) {
@@ -56,8 +54,7 @@ function subscribeByPhoneNumber(phoneNumber, otp) {
       console.log(data);
       var params = {
         Protocol: "SMS" /* required */,
-        TopicArn:
-          "arn:aws:sns:ap-south-1:639661757204:Test-Topic" /* required */,
+        TopicArn: "arn:aws:sns:ap-south-1:639661757204:Test-Topic" /* required */,
         //  Attributes: {
         //  '<attributeName>': 'STRING_VALUE',
         /* '<attributeName>': ... */

@@ -16,8 +16,6 @@ const verifyToken = (token) => {
 };
 
 module.exports = {
-  generateToken,
-  generateTokenForMobileNumber,
   generateTokenForUsername,
   verifyToken,
 };

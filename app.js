@@ -2,8 +2,21 @@ const express = require("express");
 var path = require("path");
 var User = require("./model/User");
 var connect = require("./config/db.config");
-const upload = require("./upload");
+const uploadFunc = require("./upload");
 var multer = require("multer");
+
+// upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./");
+  },
+  filename: function (req, file, cb) {
+    cb(null, "source.jpg");
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const {
   subscribeByEmail,
   subscribeByPhoneNumber,
@@ -21,18 +34,22 @@ app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
 
-app.post("/upload", (req, res) => {
-  upload(req.body.filename);
-  console.log("Upload function Working");
+app.get("/checkUpload", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/sample.html"));
+});
+
+app.post("/upload", upload.single("uploaded_file"), (req, res) => {
+  console.log(req.file);
+  uploadFunc();
+  res.sendStatus(200);
 });
 
 app.post("/subscribe", (req, res) => {
   subscribeByEmail(req.body.email);
-  res.redirect("/dashboard");
+  res.sendStatus(200);
 });
 
 app.post("/subscribeByNumber", (req, res) => {
-  console.log(req.body, "data from frontend");
   if (!req.body.otp) {
     sendOtp(req.body.phoneNumber);
   } else {
@@ -44,7 +61,6 @@ app.post("/subscribeByNumber", (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     var { username, password } = req.body;
-    console.log(req.body, 1);
     if (username && password) {
       var userLogin = await User.findOne({
         username: username,

@@ -7,7 +7,7 @@ AWS.config.update({ region: "ap-south-1" });
 // Create S3 service object
 var s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
-function uploadFunc() {
+function uploadFunc(imgPath) {
   // Configure the file stream and obtain the upload parameters
   var fileStream = fs.createReadStream("source.jpg");
   fileStream.on("error", function (err) {

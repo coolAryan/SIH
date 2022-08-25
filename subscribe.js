@@ -25,8 +25,6 @@ function subscribeByEmail(email) {
     .catch(function (err) {
       console.error(err, err.stack);
     });
-
-  return;
 }
 
 function sendOtp(phoneNumber) {

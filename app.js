@@ -34,24 +34,29 @@ app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
 
+app.get("/upload", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/Upload/upload.html"));
+});
+
 app.post("/upload", upload.single("uploaded_file"), (req, res) => {
   console.log(req.file);
-  uploadFunc();
-  res.sendStatus(200);
+  uploadFunc(req.file.path);
+  res.redirect("back");
 });
 
 app.post("/subscribe", (req, res) => {
   subscribeByEmail(req.body.email);
-  res.sendStatus(200);
+  res.redirect("back");
 });
 
 app.post("/subscribeByNumber", (req, res) => {
-  if (!req.body.otp) {
-    sendOtp(req.body.phoneNumber);
-  } else {
+  console.log(req.body);
+  if (req.body.otp) {
     subscribeByPhoneNumber(req.body.phoneNumber, req.body.otp);
+  } else {
+    sendOtp(req.body.phoneNumber);
   }
-  res.sendStatus(200);
+  res.redirect("back");
 });
 
 app.post("/login", async (req, res) => {

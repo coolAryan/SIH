@@ -111,7 +111,7 @@
                   
                       <td style="padding:5px">
                           <a style="text-decoration:none">
-                              <label class="func" id="abc" />
+                              <label class="func" id="abc" onClick="checkMe()"" />
                                   <b>
                                       <i class="fas fa-upload"></i> &nbsp; 
                                       <input id="submitbutton" type="submit" value="Upload">
@@ -134,35 +134,6 @@
         </div>
       </div>
       <script src="script.js"></script>
-<!-- <script type="text/javascript">
-  let uploadButton = document.getElementById("upload-button");
-  let chosenImage = document.getElementById("chosen-image");
-  let fileName = document.getElementById("file-name");
-  let reader = new FileReader();
-
-   function runJsScript(filename){
-        var jqXHR = $.ajax({
-            type: "POST",
-            url: "/upload",
-            async: false,
-            data: { filename: filename},
-        });
-        return jqXHR.responseText;
-    }
-
-    $('#submitbutton').click(function(){
-        reader.readAsDataURL(uploadButton.files[0]);
-        console.log(reader, "1");
-        reader.onload = () => {
-          chosenImage.setAttribute("src", reader.result);
-        };
-        fileName.textContent = uploadButton.files[0].name;
-        
-        var formData = new FormData();
-        formData.append("image", uploadButton.files[0]);
-        result = runJsScript(fileName.textContent);
-    }); -->
-<!-- </script> -->
     </div>
   </body>
 </html>

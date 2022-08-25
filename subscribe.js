@@ -25,23 +25,29 @@ function subscribeByEmail(email) {
     .catch(function (err) {
       console.error(err, err.stack);
     });
+
+  // return data;
 }
 
 function sendOtp(phoneNumber) {
-  this.number = phoneNumber;
+  number = phoneNumber;
   var params = {
     PhoneNumber: "+91" + `${phoneNumber}` /* required */,
     LanguageCode: "en-US",
   };
+
   sns.createSMSSandboxPhoneNumber(params, function (err, data) {
     if (err) console.log(err, err.stack); // an error occurred
     else {
+      console.log(data);
       console.log("Otp Send");
     } // successful response
   });
+  //     return data.otp ;
 }
 
 function subscribeByPhoneNumber(phoneNumber, otp) {
+  console.log(number, "number");
   var params = {
     OneTimePassword: otp /* required */,
     PhoneNumber: "+91" + `${number}` /* required */,
@@ -58,7 +64,7 @@ function subscribeByPhoneNumber(phoneNumber, otp) {
         //  '<attributeName>': 'STRING_VALUE',
         /* '<attributeName>': ... */
         //},
-        Endpoint: number,
+        Endpoint: "+91" + `${number}`,
         ReturnSubscriptionArn: true || false,
       };
       sns.subscribe(params, function (err, data) {

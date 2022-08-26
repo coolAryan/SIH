@@ -1,8 +1,23 @@
 const express = require("express");
 var path = require("path");
-var mongoose = require("mongoose");
 var User = require("./model/User");
-const upload = require("./upload");
+var connect = require("./config/db.config");
+const uploadFunc = require("./upload");
+const downloadImg = require("./downloadImg");
+var multer = require("multer");
+
+// upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public");
+  },
+  filename: function (req, file, cb) {
+    cb(null, "source.jpg");
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const {
   subscribeByEmail,
   subscribeByPhoneNumber,
@@ -15,46 +30,40 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-try {
-  mongoose.connect(
-    "mongodb+srv://khushboo123:SIH123@phantom.agz12to.mongodb.net/authentication"
-  );
-
-  var db = mongoose.connection;
-  db.on("connected", console.error.bind(console, "MongoDB connection done"));
-  db.on("error", console.error.bind(console, "MongoDB connection error:"));
-} catch (error) {
-  console.log(error);
-}
-
+connect();
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
 });
 
-app.post("/upload", (req, res) => {
-  upload(req.body.filename, req.files);
-  console.log("Upload function Working");
+app.get("/criminalImg", (req, res) => {
+  downloadImg();
+  res.sendFile(path.join(__dirname + "/public/viewImage.html"));
+});
+
+app.post("/upload", upload.single("uploaded_file"), (req, res) => {
+  console.log(req.file);
+  uploadFunc(req.file.path);
+  res.redirect("back");
 });
 
 app.post("/subscribe", (req, res) => {
   subscribeByEmail(req.body.email);
-  res.redirect("/dashboard");
+  res.redirect("back");
 });
 
 app.post("/subscribeByNumber", (req, res) => {
-  console.log(req.body, "data from frontend");
-  if (!req.body.otp) {
-    sendOtp(req.body.phoneNumber);
+  console.log(req.body);
+  if (req.body.otp) {
+    subscribeByPhoneNumber(req.body.phoneNumber, req.body.otp);
   } else {
-    subscribeByPhoneNumber((req.body.phoneNumber, req.body.otp));
+    sendOtp(req.body.phoneNumber);
   }
-  res.sendStatus(200);
+  res.redirect("back");
 });
 
 app.post("/login", async (req, res) => {
   try {
     var { username, password } = req.body;
-    console.log(req.body, 1);
     if (username && password) {
       var userLogin = await User.findOne({
         username: username,

@@ -3,12 +3,13 @@ var path = require("path");
 var User = require("./model/User");
 var connect = require("./config/db.config");
 const uploadFunc = require("./upload");
+const downloadImg = require("./downloadImg");
 var multer = require("multer");
 
 // upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./");
+    cb(null, "./public");
   },
   filename: function (req, file, cb) {
     cb(null, "source.jpg");
@@ -32,6 +33,11 @@ app.use(express.static(path.join(__dirname, "public")));
 connect();
 app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/Grid.html"));
+});
+
+app.get("/criminalImg", (req, res) => {
+  downloadImg();
+  res.sendFile(path.join(__dirname + "/public/viewImage.html"));
 });
 
 app.post("/upload", upload.single("uploaded_file"), (req, res) => {

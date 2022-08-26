@@ -9,7 +9,8 @@ var s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 function uploadFunc(imgPath) {
   // Configure the file stream and obtain the upload parameters
-  var fileStream = fs.createReadStream("source.jpg");
+  //var fileStream = fs.createReadStream("source.jpg");
+  var fileStream = fs.createReadStream("./public/source.jpg");
   fileStream.on("error", function (err) {
     console.log("File Error", err);
   });

@@ -3,7 +3,7 @@ var path = require("path");
 var User = require("./model/User");
 var connect = require("./config/db.config");
 const uploadFunc = require("./upload");
-const downloadImg = require("./downloadImg");
+const { downloadImg } = require("./downloadImg");
 var multer = require("multer");
 
 // upload
@@ -37,7 +37,7 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/criminalImg", (req, res) => {
   downloadImg();
-  res.sendFile(path.join(__dirname + "/public/viewImage.html"));
+  res.sendFile(path.join(__dirname + "/public/viewimg/ViewImageHtml.html"));
 });
 
 app.post("/upload", upload.single("uploaded_file"), (req, res) => {

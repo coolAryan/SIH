@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAलाSH</title>
+    <link rel="stylesheet" href="login.css">
+    
+    <style>
+      html,
+      body{
+          height: 100%;
+          margin: 0;
+          /*background-color: #f5f8ff;*/
+          background-color: white;
+          }
+
+      .box{
+          display: flex;
+          flex-flow: column;
+          height: 100%;
+          }
+
+      .box .maiss{
+                  flex: 1 1 auto;
+                }
+
+      .maiss{
+            display: flex;
+            justify-content: center; /*for vertical position*/
+            align-items: center; /*for horizontal center position*/
+            /*background-image: url("Crowd.jfif");
+            background-size: 100% 100%;*/
+            padding: 2px;
+            }
+
+      .w3-animate-bottom{
+                         font-family: Lucida;
+                        }
+
+      #headtopic{
+                background-color:#56baed;
+               }
+      .w3-padding-32{
+                    text-align: center;
+                    }
+    </style>
+
+  </head>
+  <body>
+    <div class="box">
+      <!-- Header -->
+      <div id="headtopic">
+        <div class="w3-container w3-theme w3-padding" id="myHeader">
+          <div class="w3-center">
+            
+            <div class="w3-padding-32">
+              <h1 class="w3-xxxlarge w3-animate-bottom">TAलाSH</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="maiss">
+        <div class="wrapper fadeInDown">
+          <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Sign In </h2>
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" id="icon" alt="User Icon" height=160 width=50/>
+            </div>
+
+            <!-- Login Form -->
+            <form action="/login" method="POST" id="login">
+              <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+              <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+              <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+              <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+html,
+body{
+     height: 100%;
+     margin: 0;
+     /*background-color: #f5f8ff;*/
+     background-color: white;
+    }
+
+.box{
+     display: flex;
+     flex-flow: column;
+     height: 100%;
+    }
+
+.box .maiss{
+            flex: 1 1 auto;
+           }
+
+.maiss{
+       display: flex;
+       justify-content: center; /*for vertical position*/
+       align-items: center; /*for horizontal center position*/
+       /*background-image: url("Crowd.jfif");
+       background-size: 100% 100%;*/
+       padding: 2px;
+      }
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Rubik",sans-serif;
+}
+
+img{
+    /*width: 145px;*/
+    max-width: 180px;
+    height: 180px;
+   }
+
+.container{
+    /*background-color: #ffffff;*/
+    background-color: gainsboro;
+    width: 30%;
+    /*min-width: 450px;*/
+    position: absolute;
+    /*transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%*/;
+    padding: 30px 30px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+    border-radius: 7px;
+}
+.image-container{
+    width: 90%;
+    margin: 0 auto 30px auto;
+}
+.image-container img{
+    display: block;
+    position: relative;
+    max-width: 100%;
+    max-height: 400px;
+    margin: auto;
+}
+figcaption{
+    margin: 5px 0px 0px 0px;
+    text-align: center;
+    color: #2a292a;
+}
+
+input[type="file"]{
+    display: none;
+}
+label{
+    display: block;
+    position: relative;
+    background-color: #025bee;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    width: 300px;
+    padding: 18px 0;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+}

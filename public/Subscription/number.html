@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suscribe</title>
+    <link rel="stylesheet" href="sub.css" />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h2>Enter Phone Number To Subscribe</h2>
+        <form class="form" action="/subscribeByNumber" method="post">
+          <input
+            type="tel"
+            class="phoneNumber"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            maxlength="15"
+            title="Ten digits code"
+            required
+          />
+          <button type="number" id="otp-button">Generate OTP</button>
+        </form>
+        <br /><br />
+        <form action="/subscribeByNumber" method="post">
+          <input
+            type="tel"
+            name="otp"
+            placeholder="Enter OTP"
+            maxlength="8"
+            title="Five-Eight digits code"
+            required
+          />
+          <button type="submit" id="verify-button">Verify</button><br />
+        </form>
+      </div>
+
+      <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </body>
+</html>
